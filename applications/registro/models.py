@@ -330,6 +330,7 @@ class AccionIncidente(models.Model):
     reporte = models.ForeignKey(Reporte,on_delete=models.CASCADE)
     created = models.DateTimeField('creado', auto_now=False,auto_now_add=True)
     edited = models.DateTimeField('editado', auto_now=True,auto_now_add=False)
+    algo = models.CharField(max_length=50)
 
     class Meta:
         verbose_name = 'Acción incidente'
