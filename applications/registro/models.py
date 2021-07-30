@@ -1,10 +1,11 @@
 from django.db import models
+from django.forms.models import model_to_dict
 
 
 # Create your models here.
 
 class Pais(models.Model):
-    nombre = models.CharField('nombre', max_length=50)
+    nombre = models.CharField('nombre', max_length=50, unique=True)
     created = models.DateTimeField('creado', auto_now=False, auto_now_add=True)
     edited = models.DateTimeField('editado', auto_now=True, auto_now_add=False)
 
@@ -15,7 +16,11 @@ class Pais(models.Model):
 
 
     def __str__(self):
-        return self. nombre
+        return self.nombre
+
+    def toJSON(self):
+        item = model_to_dict(self)
+        return item
 
 
 class Causa(models.Model):
@@ -47,7 +52,10 @@ class SistemaServicio(models.Model):
 class AreaACargo(models.Model):
     nombre = models.CharField('nombre', max_length=50)
     created = models.DateTimeField('creado', auto_now=False,auto_now_add=True)
-    edited = models.DateTimeField('editado', auto_now=True,auto_now_add=False) 
+    edited = models.DateTimeField('editado', auto_now=True,auto_now_add=False)
+
+    def __str__(self):
+        return self.nombre
 
     
 class EmpresaMonitoreo(models.Model):
@@ -205,12 +213,15 @@ class Participante(models.Model):
         verbose_name_plural = 'Participantes'
 
     def __str__(self):
-        return self.nombre + " - " + self.cargo
+        return self.nombre
 
 class Servidor(models.Model):
     nombre = models.CharField(max_length=50)
     ip = models.CharField(max_length=50)
     estado = models.BooleanField()
+    created = models.DateTimeField('creado', auto_now=False,auto_now_add=True)
+    edited = models.DateTimeField('editado', auto_now=True,auto_now_add=False)
+
 
     class Meta:
         verbose_name = 'Servidor'
@@ -224,20 +235,34 @@ class Enlace(models.Model):
     ubicacion_origen = models.CharField(max_length=50)
     ubicacion_destino = models.CharField(max_length=50)
     caracteristicas = models.CharField(max_length=300)
+    created = models.DateTimeField('creado', auto_now=False,auto_now_add=True)
+    edited = models.DateTimeField('editado', auto_now=True,auto_now_add=False)
+
 
     def __str__(self):
         return self.ubicacion_origen + " - " + self.ubicacion_destino
 
 class Region(models.Model):
-    nombre = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50, unique=True)
+    pais = models.ForeignKey(Pais,on_delete=models.CASCADE)
+    created = models.DateTimeField('creado', auto_now=False,auto_now_add=True)
+    edited = models.DateTimeField('editado', auto_now=True,auto_now_add=False)
+
 
     def __str__(self):
         return self.nombre
 
+    def toJSON(self):
+        item = model_to_dict(self)
+        return item    
+
 
 class Comuna(models.Model):
-    nombre = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50, unique=True)
     region = models.ForeignKey(Region,on_delete=models.CASCADE)
+    created = models.DateTimeField('creado', auto_now=False,auto_now_add=True)
+    edited = models.DateTimeField('editado', auto_now=True,auto_now_add=False)
+
 
     def __str__(self):
         return self.nombre
@@ -247,6 +272,13 @@ class Ubicacion(models.Model):
     comuna = models.ForeignKey(Comuna,on_delete=models.CASCADE)
     direccion = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=50)
+    created = models.DateTimeField('creado', auto_now=False,auto_now_add=True)
+    edited = models.DateTimeField('editado', auto_now=True,auto_now_add=False)
+
+    
+    def __str__(self):
+        return self.descripcion
+
 
 
 class Reporte(models.Model):
@@ -265,8 +297,8 @@ class Reporte(models.Model):
     analisis_posterior = models.CharField(max_length=100)
     control_de_cambios = models.CharField(max_length=200)
     ticket_OTRS = models.CharField(max_length=200)
-    id_pais = models.ForeignKey(Pais,on_delete=models.CASCADE)
-    id_causa = models.ForeignKey(Causa,on_delete=models.CASCADE)
+    pais = models.ForeignKey(Pais,on_delete=models.CASCADE)
+    causa = models.ForeignKey(Causa,on_delete=models.CASCADE)
     sistema_servicio = models.ForeignKey(SistemaServicio,on_delete=models.CASCADE)
     area_a_cargo = models.ForeignKey(AreaACargo,on_delete=models.CASCADE)
     agrupacion = models.ForeignKey(Agrupacion,on_delete=models.CASCADE)
@@ -344,6 +376,9 @@ class Seguimiento(models.Model):
     detalle = models.CharField(max_length=300)
     plazo = models.DateField()
     reporte = models.ForeignKey(Reporte,on_delete=models.CASCADE)
+    created = models.DateTimeField('creado', auto_now=False,auto_now_add=True)
+    edited = models.DateTimeField('editado', auto_now=True,auto_now_add=False)
+
 
     class Meta:
         verbose_name = 'Seguimiento'

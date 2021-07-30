@@ -27,7 +27,6 @@ admin.site.register(Servidor)
 admin.site.register(Enlace)
 admin.site.register(Region)
 admin.site.register(Comuna)
-admin.site.register(Ubicacion)
 admin.site.register(AccionPreventiva)
 admin.site.register(MotivoIncidente)
 admin.site.register(AccionIncidente)
@@ -71,3 +70,15 @@ admin.site.register(Reporte, ReporteAdmin)
 
 #admin.site.register(Estudiante, EstudianteAdmin)
 #admin.site.register(Materia)
+
+class UbicacionAdmin(admin.ModelAdmin):
+    list_display = (
+        'comuna',
+        'direccion',
+        'descripcion'
+    )
+
+    search_fields = ('comuna',)
+    list_filter =('comuna', 'descripcion',)
+
+admin.site.register(Ubicacion, UbicacionAdmin)

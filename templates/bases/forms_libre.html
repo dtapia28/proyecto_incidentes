@@ -1,0 +1,41 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+{% block body %}
+{% block modales %}
+{% endblock %}
+    <h2>{{title}}</h2>
+
+    <div class="form-group col-5">
+        <form action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}
+            {% block formulario %}
+            
+            {% endblock %}
+            <input type="hidden" name="action" value="{{action}}">
+            <button class="btn btn-primary" type="submit">Guardar</button>
+        </form>
+    </div>
+{% endblock  %}
+{% block js %}
+<link rel="stylesheet" href="{% static 'css/container.css' %}">
+<script src="{% static 'js/container.js' %}"></script>
+{% block js2 %}
+    
+{% endblock %}
+{% endblock %}
+
+
+    

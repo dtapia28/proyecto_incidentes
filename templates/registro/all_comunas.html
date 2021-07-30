@@ -1,0 +1,137 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/container.css' %}">
+<link rel="stylesheet" href="{% static 'lib/datatable/datatables.css' %}">
+{% endblock %}
+{% block body %}
+
+<button type="button" class="btn btn-primary" id="abre_modal" style="margin-bottom: 10px; margin-left: 5px;">Crear Comuna</button>
+
+<div id="tvesModal" class="modalContainer">
+    <div class="modal-content">
+        <span class="close">x</span>
+        <h3 style="text-align: center;">Formulario crear comuna</h3>
+        <form id="form_creacion" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                <label for="nombre_comuna">Nombre:</label>
+                {{form.nombre}}
+                <label for="id_pais">Pais</label>
+                {{form.pais}}
+                <label for="id_region">Región:</label>
+                {{form.region}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<table class="table" id="tabla">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Región</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for comuna in object_list%}
+        <tr>
+            <td>{{comuna.nombre}}</td>
+            <td>{{comuna.region}}</td>
+            <td>
+                <a href="{% url 'registro:edita_comuna' comuna.id %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                    </svg>
+                </a>
+                <a href="{% url 'registro:elimina_comuna' comuna.id %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                </a>                                
+            </td>
+        </tr>
+        {%endfor%}   
+    </tbody>
+</table> 
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/container.js' %}"></script>
+    <script src="{% static 'lib/datatable/datatables.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#tabla').DataTable({
+                responsive: true
+            });
+        });
+
+        $('form').on('submit', function(e){
+            e.preventDefault();
+            var parametros = $(this).serializeArray();
+            console.log(parametros);
+            $.ajax({
+                url: '../crea_comuna/',
+                type: 'POST',
+                data: parametros,
+                dataType: 'json'
+            }).done(function(data){
+                if(data.hasOwnProperty('error')){
+                    alerta_error(data.error);
+                } else {
+                    $(location).attr('href', '{{url_list}}');
+                    return false;
+                }
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                alert(textStatus+": "+errorThrown);
+            }).always(function (data) {
+            });
+        });
+
+        $(function(){
+            $('select[name="pais"]').on('change', function(){
+                var id = $(this).val()
+                var select_regiones = $('select[name="region"]');
+                var options = "<option values=''>Escoge una región</option>";
+                $.ajax({
+                    url: window.location.pathname,
+                    type: 'POST',
+                    data: {
+                        'action': 'search_region_id',
+                        'id': id
+                    },
+                    dataType: 'json'
+                }).done(function(data){
+                    if(data.hasOwnProperty('error')){
+                        alerta_error(data.error);
+                    } else {
+                        $.each(data, function(key, value){
+                            options+='<option value='+value.id+'>'+value.nombre+'</option>';
+                        });
+                        return false;
+                    }
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    alert(textStatus+": "+errorThrown);
+                }).always(function (data) {
+                    select_regiones.html(options);
+                });                
+            });
+        });
+    </script>
+{% endblock %}

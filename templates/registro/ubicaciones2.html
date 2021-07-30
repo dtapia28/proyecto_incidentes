@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>listar Ubicaciones via GET</h1>
+    <ul>
+        
+        {% for e in object_list %}
+            <li>{{e.direccion}}</li>
+        {% endfor %}
+            
+    </ul>
+
+    <form action="/listar_ubicaciones2" method="get">
+        {% csrf_token %}
+        <select name="id" id="id">
+            <option value="" selected disabled>Escoge una opción</option>
+            <option value="2">San Bernardo</option>
+            <option value="3">El Bosque</option>
+        </select>
+        <button type="submit">Enviar</button>
+    </form>    
+</body>
+</html>

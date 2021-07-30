@@ -1,0 +1,1022 @@
+{% extends 'bases/forms_libre.html' %}
+
+{% block modales %}
+<div id="tvesModal1" class="modalContainer1">
+    <div class="modal-content">
+        <span class="close1">x</span>
+        <h3 style="text-align: center;">Ingresa nuevo país</h3>
+        <form id="form_creacion_pais" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{pais_form.nombre.label_tag}}
+                {{pais_form.nombre}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="tvesModal2" class="modalContainer2">
+    <div class="modal-content">
+        <span class="close2">x</span>
+        <h3 style="text-align: center;">Ingresa nueva causa</h3>
+        <form id="form_creacion_causa" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{causa_form.nombre.label_tag}}
+                {{causa_form.nombre}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="tvesModal3" class="modalContainer3">
+    <div class="modal-content">
+        <span class="close3">x</span>
+        <h3 style="text-align: center;">Ingresa nuevo sistema de servicio</h3>
+        <form id="form_creacion_sistema_servicio" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{sistema_servicio_form.nombre.label_tag}}
+                {{sistema_servicio_form.nombre}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="tvesModal4" class="modalContainer4">
+    <div class="modal-content">
+        <span class="close4">x</span>
+        <h3 style="text-align: center;">Ingresa nueva area a cargo</h3>
+        <form id="form_creacion_area_a_cargo" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{area_a_cargo_form.nombre.label_tag}}
+                {{area_a_cargo_form.nombre}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="tvesModal5" class="modalContainer5">
+    <div class="modal-content">
+        <span class="close5">x</span>
+        <h3 style="text-align: center;">Ingresa nueva agrupación</h3>
+        <form id="form_agrupacion" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{agrupacion_form.nombre.label_tag}}
+                {{agrupacion_form.nombre}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="tvesModal6" class="modalContainer6">
+    <div class="modal-content">
+        <span class="close6">x</span>
+        <h3 style="text-align: center;">Ingresa nueva plataforma</h3>
+        <form id="form_plataforma" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{plataforma_form.nombre.label_tag}}
+                {{plataforma_form.nombre}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="display: none;" id="tvesModal7" class="modalContainer7">
+    <div class="modal-content">
+        <span class="close7">x</span>
+        <h3 style="text-align: center;">Ingresa nuevo alcance</h3>
+        <form id="form_alcance" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{alcance_form.detalle.label_tag}}
+                {{alcance_form.detalle}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="display: none;" id="tvesModal8" class="modalContainer8">
+    <div class="modal-content">
+        <span class="close8">x</span>
+        <h3 style="text-align: center;">Ingresa nueva clasificación de impacto</h3>
+        <form id="form_plataforma" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{clasificacion_impacto_form.detalle.label_tag}}
+                {{clasificacion_impacto_form.detalle}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="display: none;" id="tvesModal9" class="modalContainer9">
+    <div class="modal-content">
+        <span class="close9">x</span>
+        <h3 style="text-align: center;">Ingresa nuevo tipo de solución</h3>
+        <form id="form_plataforma" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{tipo_solucion_form.detalle.label_tag}}
+                {{tipo_solucion_form.detalle}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="display: none;" id="tvesModal10" class="modalContainer10">
+    <div class="modal-content">
+        <span class="close10">x</span>
+        <h3 style="text-align: center;">Ingresa nueva vía de conocimiento</h3>
+        <form id="form_plataforma" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{via_conocimiento_form.detalle.label_tag}}
+                {{via_conocimiento_form.detalle}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="display: none;" id="tvesModal11" class="modalContainer11">
+    <div class="modal-content">
+        <span class="close11">x</span>
+        <h3 style="text-align: center;">Ingresa nuevos usuarios afectados</h3>
+        <form id="form_plataforma" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{usuarios_afectados_form.detalle.label_tag}}
+                {{usuarios_afectados_form.detalle}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="display: none;" id="tvesModal12" class="modalContainer12">
+    <div class="modal-content">
+        <span class="close12">x</span>
+        <h3 style="text-align: center;">Ingresa nuevo tipo de sistema</h3>
+        <form id="form_plataforma" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{tipo_sistema_form.detalle.label_tag}}
+                {{tipo_sistema_form.detalle}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="display: none;" id="tvesModal13" class="modalContainer13">
+    <div class="modal-content">
+        <span class="close13">x</span>
+        <h3 style="text-align: center;">Ingresa nuevo estado</h3>
+        <form id="form_plataforma" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{estado_form.detalle.label_tag}}
+                {{estado_form.detalle}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="display: none;" id="tvesModal14" class="modalContainer14">
+    <div class="modal-content">
+        <span class="close14">x</span>
+        <h3 style="text-align: center;">Ingresa nueva empresa de monitoreo</h3>
+        <form id="form_plataforma" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{empresa_monitoreo_form.nombre.label_tag}}
+                {{empresa_monitoreo_form.nombre}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="display: none;" id="tvesModal15" class="modalContainer15">
+    <div class="modal-content">
+        <span class="close15">x</span>
+        <h3 style="text-align: center;">Ingresa nuevo sistema</h3>
+        <form id="form_plataforma" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{sistemas_form.nombre.label_tag}}
+                {{sistemas_form.nombre}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="display: none;" id="tvesModal16" class="modalContainer16">
+    <div class="modal-content">
+        <span class="close16">x</span>
+        <h3 style="text-align: center;">Ingresa nuevo participante</h3>
+        <form id="form_plataforma" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{participantes_form.nombre.label_tag}}
+                {{participantes_form.nombre}}
+                {{participantes_form.cargo.label_tag}}
+                {{participantes_form.cargo}}
+                {{participantes_form.email.label_tag}}
+                {{participantes_form.email}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="display: none;" id="tvesModal17" class="modalContainer17">
+    <div class="modal-content">
+        <span class="close17">x</span>
+        <h3 style="text-align: center;">Ingresa nuevo servidor</h3>
+        <form id="form_plataforma" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{servidor_form.nombre.label_tag}}
+                {{servidor_form.nombre}}
+                {{servidor_form.ip.label_tag}}
+                {{servidor_form.ip}}
+                {{servidor_form.estado.label_tag}}
+                {{servidor_form.estado}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="display: none;" id="tvesModal18" class="modalContainer18">
+    <div class="modal-content">
+        <span class="close18">x</span>
+        <h3 style="text-align: center;">Ingresa nuevo enlace</h3>
+        <form id="form_plataforma" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{enlace_form.ubicacion_origen.label_tag}}
+                {{enlace_form.ubicacion_origen}}
+                {{enlace_form.ubicacion_destino.label_tag}}
+                {{enlace_form.ubicacion_destino}}
+                {{enlace_form.caracteristicas.label_tag}}
+                {{enlace_form.caracteristicas}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="display: none;" id="tvesModal19" class="modalContainer19">
+    <div class="modal-content">
+        <span class="close19">x</span>
+        <h3 style="text-align: center;">Ingresa nueva ubicación</h3>
+        <form id="form_plataforma" action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fa fa-ban"></i>Alerta!</h5>
+                    <ul>
+                        {% for elemento in form %}
+                            {% for error in elemento.errors %}
+                                <li>{{error}}</li>
+                            {% endfor %}
+                        {% endfor %}    
+                    </ul>
+                </div>
+            {% endif %}            
+            <div class="form-group">
+                {{ubicacion_form.comuna.label_tag}}
+                {{enlace_form.comuna}}
+                {{enlace_form.direccion.label_tag}}
+                {{enlace_form.direccion}}
+                {{enlace_form.descripcion.label_tag}}
+                {{enlace_form.descripcion}}
+                <input type="hidden" name="action" value="{{action}}">
+                <button style="margin-top: 5px;" class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+    
+
+{% block formulario %}
+    {{form.detalle.label_tag}}
+    {{form.detalle}}
+    {{form.resumen.label_tag}}
+    {{form.resumen}}
+    {{form.impacto.label_tag}}
+    {{form.impacto}}
+    {{form.fecha_conocimiento.label_tag}}
+    {{form.fecha_conocimiento}}
+    {{form.indisponibilidad.label_tag}}
+    {{form.indisponibilidad}}
+    {{form.tiempo_indisponibilidad.label_tag}}
+    {{form.tiempo_indisponibilidad}}
+    {{form.monitoreo.label_tag}}
+    {{form.monitoreo}}
+    {{form.fecha_incidente.label_tag}}
+    {{form.fecha_incidente}}
+    {{form.fecha_restauracion.label_tag}}
+    {{form.fecha_restauracion}}
+    {{form.ciberseguridad.label_tag}}
+    {{form.ciberseguridad}}
+    {{form.causa_principal.label_tag}}
+    {{form.causa_principal}}
+    {{form.solucion.label_tag}}
+    {{form.solucion}}
+    {{form.analisis_posterior.label_tag}}
+    {{form.analisis_posterior}}
+    {{form.control_de_cambios.label_tag}}
+    {{form.control_de_cambios}}
+    {{form.ticket_OTRS.label_tag}}
+    {{form.ticket_OTRS}}
+    {{form.pais.label_tag}}
+    {{form.pais}}
+    <button type="button" class="btn btn-primary" id="abre_modal1" style="margin-bottom: 10px; margin-left: 5px;">Crear País</button>    
+    <br>
+    {{form.causa.label_tag}}
+    {{form.causa}}
+    <button type="button" class="btn btn-primary" id="abre_modal2" style="margin-bottom: 10px; margin-left: 5px;">Crear Causa</button>
+    <br>
+    {{form.sistema_servicio.label_tag}}
+    {{form.sistema_servicio}}
+    <button type="button" class="btn btn-primary" id="abre_modal3" style="margin-bottom: 10px; margin-left: 5px;">Crear Sistema de Servicio</button>
+    <br>
+    {{form.area_a_cargo.label_tag}}
+    {{form.area_a_cargo}}
+    <button type="button" class="btn btn-primary" id="abre_modal4" style="margin-bottom: 10px; margin-left: 5px;">Crear Area a Cargo</button>
+    <br>
+    {{form.agrupacion.label_tag}}
+    {{form.agrupacion}}
+    <button type="button" class="btn btn-primary" id="abre_modal5" style="margin-bottom: 10px; margin-left: 5px;">Crear Agrupación</button>
+    <br>
+    {{form.plataforma.label_tag}}
+    {{form.plataforma}}
+    <button type="button" class="btn btn-primary" id="abre_modal6" style="margin-bottom: 10px; margin-left: 5px;">Crear Plataforma</button>
+    <br>
+    {{form.alcance.label_tag}}
+    {{form.alcance}}
+    <button type="button" class="btn btn-primary" id="abre_modal7" style="margin-bottom: 10px; margin-left: 5px;">Crear Alcance</button>
+    <br>
+    {{form.clasificacion_impacto.label_tag}}
+    {{form.clasificacion_impacto}}
+    <button type="button" class="btn btn-primary" id="abre_modal8" style="margin-bottom: 10px; margin-left: 5px;">Crear Clasificación de impacto</button>
+    <br>
+    {{form.tipo_solucion.label_tag}}
+    {{form.tipo_solucion}}
+    <button type="button" class="btn btn-primary" id="abre_modal9" style="margin-bottom: 10px; margin-left: 5px;">Crear Tipo de solución</button>
+    <br>
+    {{form.via_conocimiento.label_tag}}
+    {{form.via_conocimiento}}
+    <button type="button" class="btn btn-primary" id="abre_modal10" style="margin-bottom: 10px; margin-left: 5px;">Crear Vía de conocimiento</button>
+    <br>
+    {{form.usuarios_afectados.label_tag}}
+    {{form.usuarios_afectados}}
+    <button type="button" class="btn btn-primary" id="abre_modal11" style="margin-bottom: 10px; margin-left: 5px;">Crear Usuarios afectados</button>
+    <br>
+    {{form.tipo_sistema.label_tag}}
+    {{form.tipo_sistema}}
+    <button type="button" class="btn btn-primary" id="abre_modal12" style="margin-bottom: 10px; margin-left: 5px;">Crear Tipo de sistema</button>
+    <br>
+    {{form.estado.label_tag}}
+    {{form.estado}}
+    <button type="button" class="btn btn-primary" id="abre_modal13" style="margin-bottom: 10px; margin-left: 5px;">Crear Estado</button>
+    <br>
+    {{form.empresas_monitoreo.label_tag}}
+    {{form.empresas_monitoreo}}
+    <button type="button" class="btn btn-primary" id="abre_modal14" style="margin-bottom: 10px; margin-left: 5px;">Crear Empresa monitoreo</button>
+    <br>
+    {{form.sistemas.label_tag}}
+    {{form.sistemas}}
+    <button type="button" class="btn btn-primary" id="abre_modal15" style="margin-bottom: 10px; margin-left: 5px;">Crear Sistemas</button>
+    <br>
+    {{form.participantes.label_tag}}
+    {{form.participantes}}
+    <button type="button" class="btn btn-primary" id="abre_modal16" style="margin-bottom: 10px; margin-left: 5px;">Crear Participantes</button>
+    <br>
+    {{form.servidor.label_tag}}
+    {{form.servidor}}
+    <button type="button" class="btn btn-primary" id="abre_modal17" style="margin-bottom: 10px; margin-left: 5px;">Ingresar servidor</button>
+    <br>
+    {{form.enlace.label_tag}}
+    {{form.enlace}}
+    <button type="button" class="btn btn-primary" id="abre_modal18" style="margin-bottom: 10px; margin-left: 5px;">Ingresar enlace</button>
+    <br>
+    {{form.ubicacion.label_tag}}
+    {{form.ubicacion}}
+    <button type="button" class="btn btn-primary" id="abre_modal19" style="margin-bottom: 10px; margin-left: 5px;">Ingresar ubicación</button>
+    <br>     
+    {% endblock %}
+
+{% block js2 %}
+<script>
+    $('form:first').on('submit', function(e){
+        e.preventDefault();
+        var parametros = $(this).serializeArray();
+        $.ajax({
+            url: window.location.pathname,
+            type: 'POST',
+            data: parametros,
+            dataType: 'json'
+        }).done(function(data){
+            if(data.hasOwnProperty('error')){
+                alerta_error(data.error);
+            } else {
+                $(location).attr('href', '{{url_list}}');
+                return false;
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            alert(textStatus+": "+errorThrown);
+        }).always(function (data) {
+        });
+    });
+    $('#form_creacion_pais').on('submit', function(e){
+        e.preventDefault();
+        var parametros = $(this).serializeArray();
+        $.ajax({
+            url: '../crea_pais/',
+            type: 'POST',
+            data: parametros,
+            dataType: 'json'
+        }).done(function(data){
+            if(data.hasOwnProperty('error')){
+                alerta_error(data.error);
+            } else {
+                var select_paises = $('select[name="pais"]');
+                var options = "<option values=''>Escoge un país</option>";
+                $.ajax({
+                    url: window.location.pathname,
+                    type: 'POST',
+                    data: {
+                        'action': 'search_pais',
+                    },
+                    dataType: 'json'
+                }).done(function(data){
+                    if(data.hasOwnProperty('error')){
+                        alerta_error(data.error);
+                    } else {
+                        $.each(data, function(key, value){
+                            options+='<option value='+value.id+'>'+value.nombre+'</option>';
+                        });
+
+                        var span = $('select[class="close1"]');
+                        var modal = $("#tvesModal1");
+                        var body = $("body");
+		                
+                        modal.css('display', 'none');
+	                    body.css('position', 'inherit');
+		                body.css('height', 'auto');
+		                body.css('overflow', 'visible');
+
+                        return false;
+                    }
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    alert(textStatus+": "+errorThrown);
+                }).always(function (data) {
+                    select_paises.html(options);
+                });
+                return false;
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            alert(textStatus+": "+errorThrown);
+        }).always(function (data) {
+        });
+    });
+
+    $('#form_creacion_causa').on('submit', function(e){
+        e.preventDefault();
+        var parametros = $(this).serializeArray();
+        $.ajax({
+            url: '../crea_causa/',
+            type: 'POST',
+            data: parametros,
+            dataType: 'json'
+        }).done(function(data){
+            if(data.hasOwnProperty('error')){
+                alerta_error(data.error);
+            } else {
+                var select_paises = $('select[name="causa"]');
+                var options = "<option values=''>Escoge una causa</option>";
+                $.ajax({
+                    url: window.location.pathname,
+                    type: 'POST',
+                    data: {
+                        'action': 'search_causa',
+                    },
+                    dataType: 'json'
+                }).done(function(data){
+                    if(data.hasOwnProperty('error')){
+                        alerta_error(data.error);
+                    } else {
+                        $.each(data, function(key, value){
+                            options+='<option value='+value.id+'>'+value.nombre+'</option>';
+                        });
+
+                        var span = $('select[class="close2"]');
+                        var modal = $("#tvesModal2");
+                        var body = $("body");
+		                
+                        modal.css('display', 'none');
+	                    body.css('position', 'inherit');
+		                body.css('height', 'auto');
+		                body.css('overflow', 'visible');
+
+                        return false;
+                    }
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    alert(textStatus+": "+errorThrown);
+                }).always(function (data) {
+                    select_paises.html(options);
+                });
+                return false;
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            alert(textStatus+": "+errorThrown);
+        }).always(function (data) {
+        });
+    });
+
+    $('#form_creacion_sistema_servicio').on('submit', function(e){
+        e.preventDefault();
+        var parametros = $(this).serializeArray();
+        $.ajax({
+            url: '../crea_sistema_servicio/',
+            type: 'POST',
+            data: parametros,
+            dataType: 'json'
+        }).done(function(data){
+            if(data.hasOwnProperty('error')){
+                alerta_error(data.error);
+            } else {
+                var select_paises = $('select[name="sistema_servicio"]');
+                var options = "<option values=''>Escoge un sistema de servicio</option>";
+                $.ajax({
+                    url: window.location.pathname,
+                    type: 'POST',
+                    data: {
+                        'action': 'search_sistema_servicio',
+                    },
+                    dataType: 'json'
+                }).done(function(data){
+                    if(data.hasOwnProperty('error')){
+                        alerta_error(data.error);
+                    } else {
+                        $.each(data, function(key, value){
+                            options+='<option value='+value.id+'>'+value.nombre+'</option>';
+                        });
+
+                        var span = $('select[class="close3"]');
+                        var modal = $("#tvesModal3");
+                        var body = $("body");
+		                
+                        modal.css('display', 'none');
+	                    body.css('position', 'inherit');
+		                body.css('height', 'auto');
+		                body.css('overflow', 'visible');
+
+                        return false;
+                    }
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    alert(textStatus+": "+errorThrown);
+                }).always(function (data) {
+                    select_paises.html(options);
+                });
+                return false;
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            alert(textStatus+": "+errorThrown);
+        }).always(function (data) {
+        });
+    });
+
+    $('#form_creacion_area_a_cargo').on('submit', function(e){
+        e.preventDefault();
+        var parametros = $(this).serializeArray();
+        $.ajax({
+            url: '../crea_area_a_cargo/',
+            type: 'POST',
+            data: parametros,
+            dataType: 'json'
+        }).done(function(data){
+            if(data.hasOwnProperty('error')){
+                alerta_error(data.error);
+            } else {
+                var select_paises = $('select[name="area_a_cargo"]');
+                var options = "<option values=''>Escoge un área a cargo</option>";
+                $.ajax({
+                    url: window.location.pathname,
+                    type: 'POST',
+                    data: {
+                        'action': 'search_area_a_cargo',
+                    },
+                    dataType: 'json'
+                }).done(function(data){
+                    if(data.hasOwnProperty('error')){
+                        alerta_error(data.error);
+                    } else {
+                        $.each(data, function(key, value){
+                            options+='<option value='+value.id+'>'+value.nombre+'</option>';
+                        });
+
+                        var span = $('select[class="close4"]');
+                        var modal = $("#tvesModal4");
+                        var body = $("body");
+		                
+                        modal.css('display', 'none');
+	                    body.css('position', 'inherit');
+		                body.css('height', 'auto');
+		                body.css('overflow', 'visible');
+
+                        return false;
+                    }
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    alert(textStatus+": "+errorThrown);
+                }).always(function (data) {
+                    select_paises.html(options);
+                });
+                return false;
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            alert(textStatus+": "+errorThrown);
+        }).always(function (data) {
+        });
+    });
+
+    $('#form_agrupacion').on('submit', function(e){
+        e.preventDefault();
+        var parametros = $(this).serializeArray();
+        $.ajax({
+            url: '../crea_agrupacion/',
+            type: 'POST',
+            data: parametros,
+            dataType: 'json'
+        }).done(function(data){
+            if(data.hasOwnProperty('error')){
+                alerta_error(data.error);
+            } else {
+                var select_paises = $('select[name="agrupacion"]');
+                var options = "<option values=''>Escoge una agrupación</option>";
+                $.ajax({
+                    url: window.location.pathname,
+                    type: 'POST',
+                    data: {
+                        'action': 'search_agrupacion',
+                    },
+                    dataType: 'json'
+                }).done(function(data){
+                    if(data.hasOwnProperty('error')){
+                        alerta_error(data.error);
+                    } else {
+                        $.each(data, function(key, value){
+                            options+='<option value='+value.id+'>'+value.nombre+'</option>';
+                        });
+
+                        var span = $('select[class="close5"]');
+                        var modal = $("#tvesModal5");
+                        var body = $("body");
+		                
+                        modal.css('display', 'none');
+	                    body.css('position', 'inherit');
+		                body.css('height', 'auto');
+		                body.css('overflow', 'visible');
+
+                        return false;
+                    }
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    alert(textStatus+": "+errorThrown);
+                }).always(function (data) {
+                    select_paises.html(options);
+                });
+                return false;
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            alert(textStatus+": "+errorThrown);
+        }).always(function (data) {
+        });
+    });
+
+    $('#form_plataforma').on('submit', function(e){
+        e.preventDefault();
+        var parametros = $(this).serializeArray();
+        $.ajax({
+            url: '../crea_plataforma/',
+            type: 'POST',
+            data: parametros,
+            dataType: 'json'
+        }).done(function(data){
+            if(data.hasOwnProperty('error')){
+                alerta_error(data.error);
+            } else {
+                var select_paises = $('select[name="plataforma"]');
+                var options = "<option values=''>Escoge una plataforma</option>";
+                $.ajax({
+                    url: window.location.pathname,
+                    type: 'POST',
+                    data: {
+                        'action': 'search_plataforma',
+                    },
+                    dataType: 'json'
+                }).done(function(data){
+                    if(data.hasOwnProperty('error')){
+                        alerta_error(data.error);
+                    } else {
+                        $.each(data, function(key, value){
+                            options+='<option value='+value.id+'>'+value.nombre+'</option>';
+                        });
+
+                        var span = $('select[class="close6"]');
+                        var modal = $("#tvesModal6");
+                        var body = $("body");
+		                
+                        modal.css('display', 'none');
+	                    body.css('position', 'inherit');
+		                body.css('height', 'auto');
+		                body.css('overflow', 'visible');
+
+                        return false;
+                    }
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    alert(textStatus+": "+errorThrown);
+                }).always(function (data) {
+                    select_paises.html(options);
+                });
+                return false;
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            alert(textStatus+": "+errorThrown);
+        }).always(function (data) {
+        });
+    });    
+</script>
+{% endblock %}
+    
